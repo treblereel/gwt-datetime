@@ -5,14 +5,14 @@ GWT cldr classes generated from gwt-cldr-importer
 
 ```xml
 <dependency>
-    <groupId>org.gwtproject.i18n</groupId>
+    <groupId>org.dominokit.i18n</groupId>
     <artifactId>gwt-cldr</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 </dependency>
 <dependency>
-    <groupId>org.gwtproject.i18n</groupId>
+    <groupId>org.dominokit.i18n</groupId>
     <artifactId>gwt-cldr</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <classifier>sources</classifier>
 </dependency>
 ```
