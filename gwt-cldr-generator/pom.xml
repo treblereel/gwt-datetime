@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.gwtproject.i18n</groupId>
+        <artifactId>gwt-i18n-parent</artifactId>
+        <version>dev</version>
+    </parent>
+
+    <artifactId>gwt-datetimeformat</artifactId>
+    <packaging>jar</packaging>
+    <version>${revision}</version>
+    <name>GWT CLDR generator</name>
+
+    <properties>
+        <xml.mapper.version>0.3-SNAPSHOT</xml.mapper.version>
+        <commons-io.version>2.10.0</commons-io.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.treblereel.gwt.xml.mapper</groupId>
+            <artifactId>api</artifactId>
+            <version>${xml.mapper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.treblereel.gwt.xml.mapper</groupId>
+            <artifactId>jre-backend</artifactId>
+            <version>${xml.mapper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.treblereel.gwt.xml.mapper</groupId>
+            <artifactId>processor</artifactId>
+            <version>${xml.mapper.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
