@@ -5,28 +5,21 @@ import javax.xml.bind.annotation.XmlValue;
 
 /**
  * @author Dmitrii Tikhomirov
- * Created by treblereel 7/10/21
+ * Created by treblereel 7/12/21
  */
-public class Language {
+public class AppendItem {
+
     @XmlAttribute
-    private String type;
+    private String request;
     @XmlValue
     private String value;
 
-    @Override
-    public String toString() {
-        return "Language{" +
-                "type='" + type + '\'' +
-                ", value='" + value + '\'' +
-                '}';
+    public String getRequest() {
+        return request;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setRequest(String request) {
+        this.request = request;
     }
 
     public String getValue() {

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlValue;
  * @author Dmitrii Tikhomirov
  * Created by treblereel 7/10/21
  */
-public class Language {
+public class Script {
     @XmlAttribute
     private String type;
     @XmlValue
@@ -15,7 +15,7 @@ public class Language {
 
     @Override
     public String toString() {
-        return "Language{" +
+        return "Script{" +
                 "type='" + type + '\'' +
                 ", value='" + value + '\'' +
                 '}';

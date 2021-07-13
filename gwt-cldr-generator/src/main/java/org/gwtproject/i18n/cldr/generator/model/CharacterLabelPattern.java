@@ -5,21 +5,19 @@ import javax.xml.bind.annotation.XmlValue;
 
 /**
  * @author Dmitrii Tikhomirov
- * Created by treblereel 7/10/21
+ * Created by treblereel 7/12/21
  */
-public class Language {
+public class CharacterLabelPattern {
+
     @XmlAttribute
     private String type;
+
+    @XmlAttribute
+    private String count;
+
     @XmlValue
     private String value;
 
-    @Override
-    public String toString() {
-        return "Language{" +
-                "type='" + type + '\'' +
-                ", value='" + value + '\'' +
-                '}';
-    }
 
     public String getType() {
         return type;
@@ -35,5 +33,13 @@ public class Language {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
     }
 }

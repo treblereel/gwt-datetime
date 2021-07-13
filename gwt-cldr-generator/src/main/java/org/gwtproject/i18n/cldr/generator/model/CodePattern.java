@@ -1,25 +1,19 @@
 package org.gwtproject.i18n.cldr.generator.model;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlCData;
 import javax.xml.bind.annotation.XmlValue;
 
 /**
  * @author Dmitrii Tikhomirov
  * Created by treblereel 7/10/21
  */
-public class Language {
+public class CodePattern {
+
     @XmlAttribute
     private String type;
     @XmlValue
     private String value;
-
-    @Override
-    public String toString() {
-        return "Language{" +
-                "type='" + type + '\'' +
-                ", value='" + value + '\'' +
-                '}';
-    }
 
     public String getType() {
         return type;
@@ -35,5 +29,13 @@ public class Language {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "CodePattern{" +
+                "type='" + type + '\'' +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

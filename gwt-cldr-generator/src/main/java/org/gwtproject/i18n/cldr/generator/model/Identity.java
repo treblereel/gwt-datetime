@@ -8,6 +8,9 @@ public class Identity {
 
     private Version version;
     private Language language;
+    private Territory territory;
+    private Script script;
+    private Variant variant;
 
 
     public Version getVersion() {
@@ -32,5 +35,29 @@ public class Identity {
                 "version=" + version +
                 ", language=" + language +
                 '}';
+    }
+
+    public Territory getTerritory() {
+        return territory;
+    }
+
+    public void setTerritory(Territory territory) {
+        this.territory = territory;
+    }
+
+    public Script getScript() {
+        return script;
+    }
+
+    public void setScript(Script script) {
+        this.script = script;
+    }
+
+    public Variant getVariant() {
+        return variant;
+    }
+
+    public void setVariant(Variant variant) {
+        this.variant = variant;
     }
 }

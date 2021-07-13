@@ -5,28 +5,22 @@ import javax.xml.bind.annotation.XmlValue;
 
 /**
  * @author Dmitrii Tikhomirov
- * Created by treblereel 7/10/21
+ * Created by treblereel 7/12/21
  */
-public class Language {
+public class GenderMinimalPairs {
+
     @XmlAttribute
-    private String type;
+    private String gender;
+
     @XmlValue
     private String value;
 
-    @Override
-    public String toString() {
-        return "Language{" +
-                "type='" + type + '\'' +
-                ", value='" + value + '\'' +
-                '}';
+    public String getGender() {
+        return gender;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getValue() {

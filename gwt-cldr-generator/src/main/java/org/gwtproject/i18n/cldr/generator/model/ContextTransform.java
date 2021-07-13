@@ -5,21 +5,15 @@ import javax.xml.bind.annotation.XmlValue;
 
 /**
  * @author Dmitrii Tikhomirov
- * Created by treblereel 7/10/21
+ * Created by treblereel 7/12/21
  */
-public class Language {
+public class ContextTransform {
+
     @XmlAttribute
     private String type;
+
     @XmlValue
     private String value;
-
-    @Override
-    public String toString() {
-        return "Language{" +
-                "type='" + type + '\'' +
-                ", value='" + value + '\'' +
-                '}';
-    }
 
     public String getType() {
         return type;
@@ -35,5 +29,13 @@ public class Language {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "ContextTransform{" +
+                "type='" + type + '\'' +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

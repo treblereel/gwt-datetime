@@ -1,7 +1,12 @@
 package org.gwtproject.i18n.cldr.generator;
 
 import org.apache.commons.io.FileUtils;
+import org.gwtproject.i18n.cldr.generator.model.Ldml;
+import org.gwtproject.i18n.cldr.generator.model.Ldml_XMLMapperImpl;
+import org.treblereel.gwt.xml.mapper.api.DefaultXMLDeserializationContext;
+import org.treblereel.gwt.xml.mapper.api.XMLDeserializationContext;
 
+import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,11 +19,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import org.gwtproject.i18n.cldr.generator.model.Ldml_XMLMapperImpl;
-import org.treblereel.gwt.xml.mapper.api.DefaultXMLDeserializationContext;
-import org.treblereel.gwt.xml.mapper.api.XMLDeserializationContext;
-
-import javax.xml.stream.XMLStreamException;
 
 /**
  * @author Dmitrii Tikhomirov
@@ -29,7 +29,6 @@ public class CdlrGenerator {
     private final static Ldml_XMLMapperImpl mapper = Ldml_XMLMapperImpl.INSTANCE;
 
     public static void main(String[] args) throws IOException {
-        //InputStream inputStream = CdlrGenerator.class.getClassLoader().getResourceAsStream("org/gwtproject/i18n/cldr/common/main/ru.xml");
         URL main = CdlrGenerator.class.getClassLoader().getResource("org/gwtproject/i18n/cldr/common/main/");
 
         File file = FileUtils.toFile(main);
@@ -41,14 +40,16 @@ public class CdlrGenerator {
 
 
         locales.forEach(e -> {
-            String[] t = e.split("_");
-            if (t.length == 1) {
-                temp.put(e, new Node(e, null));
-            } else {
-                Node parent = temp.get(t.length == 2 ? t[0] : t[0] + "_" + t[1]);
-                Node node = new Node(e, parent);
-                parent.children.add(node);
-                temp.put(e, node);
+            if (!e.equals("root")) {
+                String[] t = e.split("_");
+                if (t.length == 1) {
+                    temp.put(e, new Node(e, null));
+                } else {
+                    Node parent = temp.get(t.length == 2 ? t[0] : t[0] + "_" + t[1]);
+                    Node node = new Node(e, parent);
+                    parent.children.add(node);
+                    temp.put(e, node);
+                }
             }
 
         });
@@ -72,18 +73,34 @@ public class CdlrGenerator {
         System.out.println("total locales        " + locales.size());
         System.out.println("total locales merged " + temp.size());
 
-        process(temp.get("ru"));
+        double started = System.currentTimeMillis();
+
+        temp.forEach((k, v) -> {
+                process(v);
+        });
+
+        double end = System.currentTimeMillis();
+        System.out.println("overall processing time : " + (end - started) / 1000 + " seconds");
+
+
+        //process(temp.get("ru"));
     }
 
     private static void process(Node node) {
+        System.out.println("started " + node.name);
+        double started = System.currentTimeMillis();
+
         InputStream inputStream = CdlrGenerator.class.getClassLoader().getResourceAsStream("org/gwtproject/i18n/cldr/common/main/" + node.name + ".xml");
 
         XMLDeserializationContext context = DefaultXMLDeserializationContext.builder().failOnUnknownProperties(false).build();
 
         try {
             String xml = org.apache.commons.io.IOUtils.toString(inputStream, Charset.defaultCharset());
-            System.out.println("xml\n " + xml);
-            System.out.println("result\n " + mapper.read(xml, context));
+            Ldml result = mapper.read(xml);
+
+            double end = System.currentTimeMillis();
+
+            System.out.println(node.name + " processed in " + (end - started) / 1000 + " seconds");
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -8,3 +8,4 @@
 /maven/poms/**/pom.xml
 .flattened-pom.xml
 .idea/
+*.iml
