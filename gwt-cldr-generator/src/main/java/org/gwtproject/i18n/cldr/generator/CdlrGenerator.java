@@ -1,6 +1,8 @@
 package org.gwtproject.i18n.cldr.generator;
 
+import com.ibm.icu.util.ULocale;
 import org.apache.commons.io.FileUtils;
+import org.gwtproject.i18n.cldr.generator.generators.CurrencyListGenerator;
 import org.gwtproject.i18n.cldr.generator.model.Ldml;
 import org.gwtproject.i18n.cldr.generator.model.Ldml_XMLMapperImpl;
 import org.treblereel.gwt.xml.mapper.api.DefaultXMLDeserializationContext;
@@ -13,8 +15,11 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Currency;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -28,7 +33,27 @@ public class CdlrGenerator {
 
     private final static Ldml_XMLMapperImpl mapper = Ldml_XMLMapperImpl.INSTANCE;
 
+    private CurrencyListGenerator generator;
+
+    public static Map<Currency, Locale> getCurrencyLocaleMap() {
+        Map<Currency, Locale> map = new HashMap<>();
+        for (Locale locale : Locale.getAvailableLocales()) {
+            try {
+                Currency currency = Currency.getInstance(locale);
+                map.put(currency, locale);
+            }
+            catch (Exception e){
+                // skip strange locale
+            }
+        }
+        return map;
+    }
+
     public static void main(String[] args) throws IOException {
+        new CdlrGenerator();
+    }
+    public CdlrGenerator() throws IOException {
+
         URL main = CdlrGenerator.class.getClassLoader().getResource("org/gwtproject/i18n/cldr/common/main/");
 
         File file = FileUtils.toFile(main);
@@ -54,6 +79,8 @@ public class CdlrGenerator {
 
         });
 
+        generator = new CurrencyListGenerator(temp);
+
         temp.forEach((k, v) -> {
             if (v.parent == null) {
                 System.out.println(k);
@@ -76,17 +103,19 @@ public class CdlrGenerator {
         double started = System.currentTimeMillis();
 
         temp.forEach((k, v) -> {
-                process(v);
+                //process(v);
         });
 
         double end = System.currentTimeMillis();
         System.out.println("overall processing time : " + (end - started) / 1000 + " seconds");
 
 
-        //process(temp.get("ru"));
+
+        process(temp.get("ru"));
+
     }
 
-    private static void process(Node node) {
+    private void process(Node node) {
         System.out.println("started " + node.name);
         double started = System.currentTimeMillis();
 
@@ -97,6 +126,7 @@ public class CdlrGenerator {
         try {
             String xml = org.apache.commons.io.IOUtils.toString(inputStream, Charset.defaultCharset());
             Ldml result = mapper.read(xml);
+            generator.generate(result, node);
 
             double end = System.currentTimeMillis();
 
@@ -110,11 +140,11 @@ public class CdlrGenerator {
 
     }
 
-    private static class Node {
+    public static class Node {
 
-        final String name;
-        final Node parent;
-        final Set<Node> children = new HashSet<>();
+        final public String name;
+        final public Node parent;
+        final public Set<Node> children = new HashSet<>();
 
         Node(String name, Node parent) {
             this.name = name;

@@ -34,122 +34,169 @@
     </developers>
 
     <properties>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
+        <maven.deploy.plugin>3.0.0-M1</maven.deploy.plugin>
+        <maven.flatten.plugin>1.2.2</maven.flatten.plugin>
+        <maven.fmt.plugin>2.9</maven.fmt.plugin>
+        <maven.license.plugin>3.0</maven.license.plugin>
+        <maven.surfire.plugin>3.0.0-M1</maven.surfire.plugin>
+        <maven.source.plugin>3.2.1</maven.source.plugin>
+        <maven.javadoc.plugin>3.2.0</maven.javadoc.plugin>
+        <maven.jetty.plugin>9.4.28.v20200408</maven.jetty.plugin>
+        <maven.gwt.plugin>1.0.0</maven.gwt.plugin>
+        <maven.gpg.plugin>1.6</maven.gpg.plugin>
+        <maven.shade.plugin>3.2.4</maven.shade.plugin>
+        <maven.resource.plugin>3.2.0</maven.resource.plugin>
+        <maven.failsafe.plugin>3.0.0-M5</maven.failsafe.plugin>
+        <maven.j2cl.plugin>0.17-SNAPSHOT</maven.j2cl.plugin>
     </properties>
 
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <target>${maven.compiler.target}</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <configuration>
-                        <failOnWarnings>false</failOnWarnings>
-                        <failOnError>false</failOnError>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <groupId>com.coveo</groupId>
+                    <artifactId>fmt-maven-plugin</artifactId>
+                    <version>${maven.fmt.plugin}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <version>${maven.source.plugin}</version>
                 </plugin>
-<!--
+                <!--
+                                <plugin>
+                                    <groupId>com.mycila</groupId>
+                                    <artifactId>license-maven-plugin</artifactId>
+                                    <version>${maven.license.plugin}</version>
+                                    <configuration>
+                                        <header>LICENSE.header</header>
+                                        <encoding>${project.build.sourceEncoding}</encoding>
+                                        <skipExistingHeaders>true</skipExistingHeaders>
+                                        <mapping>
+                                            <java>SLASHSTAR_STYLE</java>
+                                        </mapping>
+                                        <excludes>
+                                            <exclude>**/README.md</exclude>
+                                            <exclude>**/LICENSE</exclude>
+                                            <exclude>**/LICENSE.header</exclude>
+                                            <exclude>**/AUTHORS</exclude>
+                                            <exclude>**/src/test/resources/**</exclude>
+                                            <exclude>**/src/main/resources/**</exclude>
+                                            <exclude>**/pom.xml</exclude>
+                                            <exclude>**/.flattened-pom.xml</exclude>
+                                            <exclude>**/war</exclude>
+                                            <exclude>**/gwt-unitcache</exclude>
+                                            <exclude>gwt-event/</exclude>
+                                            <exclude>gwt-places/</exclude>
+                                            <exclude>gwt-http/</exclude>
+                                            <exclude>gwt-history/</exclude>
+                                            <exclude>gwt-window/</exclude>
+                                        </excludes>
+                                        <properties>
+                                            <year>${project.inceptionYear}</year>
+                                            <name>${project.organization.name}</name>
+                                        </properties>
+                                    </configuration>
+                                    <executions>
+                                        <execution>
+                                            <goals>
+                                                <goal>check</goal>
+                                            </goals>
+                                        </execution>
+                                    </executions>
+                                </plugin>
+                -->
                 <plugin>
-                    <groupId>com.coveo</groupId>
-                    <artifactId>fmt-maven-plugin</artifactId>
-                    <version>2.5.1</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven.javadoc.plugin}</version>
                 </plugin>
-
                 <plugin>
-                    <groupId>com.mycila</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <configuration>
-                        <header>${user.dir}/LICENSE.header</header>
-                        <encoding>UTF-8</encoding>
-                        <skipExistingHeaders>true</skipExistingHeaders>
-                        <mapping>
-                            <java>SLASHSTAR_STYLE</java>
-                        </mapping>
-                        <excludes>
-                            <exclude>**/README.md</exclude>
-                            <exclude>**/LICENSE</exclude>
-                            <exclude>**/LICENSE.header</exclude>
-                            <exclude>**/AUTHORS</exclude>
-                            <exclude>**/*.xml</exclude>
-                            <exclude>**/*.bak</exclude>
-                            <exclude>**/*.property</exclude>
-                            <exclude>**/gwt-unitCache/**</exclude>
-                            <exclude>**/war/**</exclude>
-                            <exclude>**/src/test/resources/**</exclude>
-                            <exclude>**/src/main/resources/**</exclude>
-                            <exclude>**/gwt-i18n-j2cl-tests/**</exclude>
-                        </excludes>
-                        <properties>
-                            <year>${project.inceptionYear}</year>
-                            <name>${project.organization.name}</name>
-                        </properties>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>-->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surfire.plugin}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${maven.shade.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>${maven.flatten.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven.gp}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven.deploy.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>net.ltgt.gwt.maven</groupId>
+                    <artifactId>gwt-maven-plugin</artifactId>
+                    <version>${maven.gwt.plugin}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven.resource.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.vertispan.j2cl</groupId>
+                    <artifactId>j2cl-maven-plugin</artifactId>
+                    <version>${maven.j2cl.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven.failsafe.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${maven.jetty.plugin}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
             </plugin>
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.8.1</version>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>com.coveo</groupId>
                 <artifactId>fmt-maven-plugin</artifactId>
-            </plugin>
+                <version>3.8.1</version>
+            </plugin>-->
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
+                <version>4.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>3.8.1</version>
             </plugin>
         </plugins>
     </build>
@@ -222,17 +269,21 @@
     </profiles>
 
     <modules>
-        <module>gwt-cldr-generator</module>
+        <module>gwt-i18n</module>
+<!--
+        <module>gwt-locale</module>
+-->
+        <module>gwt-time</module>
 
-<!--        <module>gwt-i18n</module>
-        <module>gwt-datetimeformat-processor</module>
-        <module>gwt-i18n-processor-util</module>
-        <module>gwt-i18n-processor</module>
-        <module>gwt-datetimeformat</module>
-        <module>gwt-localizable-processor</module>
-        <module>gwt-numberformat</module>
-        <module>gwt-i18n-j2cl-tests</module>
-        <module>gwt-i18n-gwt2-tests</module>-->
+        <!--        <module>gwt-i18n</module>
+                <module>gwt-datetimeformat-processor</module>
+                <module>gwt-i18n-processor-util</module>
+                <module>gwt-i18n-processor</module>
+                <module>gwt-datetimeformat</module>
+                <module>gwt-localizable-processor</module>
+                <module>gwt-numberformat</module>
+                <module>gwt-i18n-j2cl-tests</module>
+                <module>gwt-i18n-gwt2-tests</module>-->
     </modules>
 
 </project>
