@@ -8,10 +8,8 @@ public class Locales {
 	private Locales() {
 		// prevent instantiation
 	}
-
-	@SuppressWarnings("unused")
-	public static Locale create(String language, String region, String script, String variant) {
-		return null;
-	}
+	public static native Locale create(String language, String region, String script, String variant) /*-{
+		return @java.util.Locale::new(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(language,region, script, variant);
+	}-*/;
 
 }

@@ -4,6 +4,7 @@ import java.util.Locale;
 import org.jresearch.threetenbp.gwt.client.locale.Locales;
 
 public class LocaleInfo {
+
 	public static final Locale SV_FI = Locales.create("sv", "FI", "", "");
 
 	public static final Locale EN_SC = Locales.create("en", "SC", "", "");

@@ -1,294 +1,271 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jresearch.gwt.time</groupId>
-	<artifactId>org.jresearch.gwt.time</artifactId>
-	<packaging>gwt-lib</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.jresearch.gwt.time</groupId>
+    <artifactId>org.jresearch.gwt.time</artifactId>
+    <packaging>gwt-lib</packaging>
 
-	<name>JRS: GWT port of JSR-310 (java.time)</name>
-	<description>JRS: GWT port of JSR-310 (java.time) based on ThreeTen backport project (https://www.threeten.org/threetenbp)</description>
-	<version>2.1.16</version>
-	<url>https://github.com/foal/gwt-time</url>
+    <name>JRS: GWT port of JSR-310 (java.time)</name>
+    <description>JRS: GWT port of JSR-310 (java.time) based on ThreeTen backport project
+        (https://www.threeten.org/threetenbp)
+    </description>
+    <version>2.1.16</version>
+    <url>https://github.com/foal/gwt-time</url>
 
-	<!-- ==================================================================== -->
-	<developers>
-		<developer>
-			<id>jodastephen</id>
-			<name>Stephen Colebourne</name>
-			<roles>
-				<role>Project Lead</role>
-			</roles>
-			<timezone>0</timezone>
-			<url>https://github.com/jodastephen</url>
-		</developer>
-	</developers>
-	<contributors>
-		<contributor>
-			<name>Martin Baker</name>
-			<url>https://github.com/kemokid</url>
-		</contributor>
-		<contributor>
-			<name>Graham Borland</name>
-			<url>https://github.com/GrahamBorland</url>
-		</contributor>
-		<contributor>
-			<name>Keith Harris</name>
-			<url>https://github.com/keithharris</url>
-		</contributor>
-		<contributor>
-			<name>Ludovic Hochet</name>
-			<url>https://github.com/lhochet</url>
-		</contributor>
-		<contributor>
-			<name>Tomislav Hofman</name>
-			<url>https://github.com/tomislavhofman</url>
-		</contributor>
-		<contributor>
-			<name>Matias Irland</name>
-			<url>https://github.com/matir91</url>
-		</contributor>
-		<contributor>
-			<name>David van Leusen</name>
-			<url>https://github.com/Kiskae</url>
-		</contributor>
-		<contributor>
-			<name>Eric Li</name>
-			<url>https://github.com/ericksli</url>
-		</contributor>
-		<contributor>
-			<name>Pap Lorinc</name>
-			<url>https://github.com/paplorinc</url>
-		</contributor>
-		<contributor>
-			<name>Philippe Marschall</name>
-			<url>https://github.com/marschall</url>
-		</contributor>
-		<contributor>
-			<name>Michael Nascimento Santos</name>
-			<url>https://github.com/sjmisterm</url>
-		</contributor>
-		<contributor>
-			<name>Roger Riggs</name>
-			<url>https://github.com/RogerRiggs</url>
-		</contributor>
-		<contributor>
-			<name>Siebe Schaap</name>
-			<url>https://github.com/sschaap</url>
-		</contributor>
-		<contributor>
-			<name>Sherman Shen</name>
-		</contributor>
-		<contributor>
-			<name>Philipp Thuerwaechter</name>
-			<url>https://github.com/pithu</url>
-		</contributor>
-		<contributor>
-			<name> Jake Wharton</name>
-			<url>https://github.com/JakeWharton</url>
-		</contributor>
-	</contributors>
-	<licenses>
-		<license>
-			<name>BSD 3-clause</name>
-			<url>https://raw.githubusercontent.com/ThreeTen/threetenbp/master/LICENSE.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	<scm>
-		<connection>scm:hg:https://helixteamhub.cloud/JRS/projects/gwtTime/repositories/mercurial/gwt-time</connection>
-		<developerConnection>scm:hg:ssh://hth@helixteamhub.cloud/JRS/projects/gwtTime/repositories/mercurial/gwt-time</developerConnection>
-		<url>https://github.com/foal/gwt-time</url>
-		<tag>v2.0.0</tag>
-	</scm>
-	<repositories>
-		<repository>
-			<id>oss.sonatype.org-snapshot</id>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	<!-- ==================================================================== -->
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-<!--					<annotationProcessorPaths>
-						<path>
-							<groupId>org.immutables</groupId>
-							<artifactId>value</artifactId>
-							<version>2.8.8</version>
-						</path>
-						<path>
-							<groupId>org.jresearch.gwt.time</groupId>
-							<artifactId>org.jresearch.gwt.time.apt.processor</artifactId>
-							<version>${time.apt.ver}</version>
-						</path>
-					</annotationProcessorPaths>-->
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.2.0</version>				<!-- To correct work of GWT Super source -->
-				<configuration>
-					<ignoredUnusedDeclaredDependencies>
-						<ignoredUnusedDeclaredDependency>com.google.jsinterop:base</ignoredUnusedDeclaredDependency>
-						<ignoredUnusedDeclaredDependency>org.jresearch.gwt.time:org.jresearch.gwt.time.apt.annotation</ignoredUnusedDeclaredDependency>
-						<ignoredUnusedDeclaredDependency>org.gwtproject.regexp:gwt-regexp</ignoredUnusedDeclaredDependency>
-						<ignoredUnusedDeclaredDependency>org.dominokit:domino-slf4j-logger</ignoredUnusedDeclaredDependency>
-					</ignoredUnusedDeclaredDependencies>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>net.ltgt.gwt.maven</groupId>
-				<artifactId>gwt-maven-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<moduleName>org.jresearch.threetenbp.gwt.module</moduleName>
-					<moduleShortName>threetenbpGwt</moduleShortName>
-					<relocateSuperSource>true</relocateSuperSource>
-					<relocateTestSuperSource>true</relocateTestSuperSource>
-					<enableAssertions>false</enableAssertions>
-					<testArgs>
-						<testArg>-testMethodTimeout</testArg>
-						<testArg>30</testArg>
-					</testArgs>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <!-- ==================================================================== -->
+    <developers>
+        <developer>
+            <id>jodastephen</id>
+            <name>Stephen Colebourne</name>
+            <roles>
+                <role>Project Lead</role>
+            </roles>
+            <timezone>0</timezone>
+            <url>https://github.com/jodastephen</url>
+        </developer>
+    </developers>
+    <contributors>
+        <contributor>
+            <name>Martin Baker</name>
+            <url>https://github.com/kemokid</url>
+        </contributor>
+        <contributor>
+            <name>Graham Borland</name>
+            <url>https://github.com/GrahamBorland</url>
+        </contributor>
+        <contributor>
+            <name>Keith Harris</name>
+            <url>https://github.com/keithharris</url>
+        </contributor>
+        <contributor>
+            <name>Ludovic Hochet</name>
+            <url>https://github.com/lhochet</url>
+        </contributor>
+        <contributor>
+            <name>Tomislav Hofman</name>
+            <url>https://github.com/tomislavhofman</url>
+        </contributor>
+        <contributor>
+            <name>Matias Irland</name>
+            <url>https://github.com/matir91</url>
+        </contributor>
+        <contributor>
+            <name>David van Leusen</name>
+            <url>https://github.com/Kiskae</url>
+        </contributor>
+        <contributor>
+            <name>Eric Li</name>
+            <url>https://github.com/ericksli</url>
+        </contributor>
+        <contributor>
+            <name>Pap Lorinc</name>
+            <url>https://github.com/paplorinc</url>
+        </contributor>
+        <contributor>
+            <name>Philippe Marschall</name>
+            <url>https://github.com/marschall</url>
+        </contributor>
+        <contributor>
+            <name>Michael Nascimento Santos</name>
+            <url>https://github.com/sjmisterm</url>
+        </contributor>
+        <contributor>
+            <name>Roger Riggs</name>
+            <url>https://github.com/RogerRiggs</url>
+        </contributor>
+        <contributor>
+            <name>Siebe Schaap</name>
+            <url>https://github.com/sschaap</url>
+        </contributor>
+        <contributor>
+            <name>Sherman Shen</name>
+        </contributor>
+        <contributor>
+            <name>Philipp Thuerwaechter</name>
+            <url>https://github.com/pithu</url>
+        </contributor>
+        <contributor>
+            <name>Jake Wharton</name>
+            <url>https://github.com/JakeWharton</url>
+        </contributor>
+    </contributors>
+    <licenses>
+        <license>
+            <name>BSD 3-clause</name>
+            <url>https://raw.githubusercontent.com/ThreeTen/threetenbp/master/LICENSE.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:hg:https://helixteamhub.cloud/JRS/projects/gwtTime/repositories/mercurial/gwt-time</connection>
+        <developerConnection>scm:hg:ssh://hth@helixteamhub.cloud/JRS/projects/gwtTime/repositories/mercurial/gwt-time
+        </developerConnection>
+        <url>https://github.com/foal/gwt-time</url>
+        <tag>v2.0.0</tag>
+    </scm>
+    <repositories>
+        <repository>
+            <id>oss.sonatype.org-snapshot</id>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <!-- ==================================================================== -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>                <!-- To correct work of GWT Super source -->
+                <configuration>
+                    <ignoredUnusedDeclaredDependencies>
+                        <ignoredUnusedDeclaredDependency>com.google.jsinterop:base</ignoredUnusedDeclaredDependency>
+                        <ignoredUnusedDeclaredDependency>org.jresearch.gwt.time:org.jresearch.gwt.time.apt.annotation
+                        </ignoredUnusedDeclaredDependency>
+                        <ignoredUnusedDeclaredDependency>org.gwtproject.regexp:gwt-regexp
+                        </ignoredUnusedDeclaredDependency>
+                        <ignoredUnusedDeclaredDependency>org.dominokit:domino-slf4j-logger
+                        </ignoredUnusedDeclaredDependency>
+                    </ignoredUnusedDeclaredDependencies>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <moduleName>org.jresearch.threetenbp.gwt.module</moduleName>
+                    <moduleShortName>threetenbpGwt</moduleShortName>
+                    <relocateSuperSource>true</relocateSuperSource>
+                    <relocateTestSuperSource>true</relocateTestSuperSource>
+                    <enableAssertions>false</enableAssertions>
+                    <testArgs>
+                        <testArg>-testMethodTimeout</testArg>
+                        <testArg>30</testArg>
+                    </testArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-	<!-- ==================================================================== -->
-	<dependencies>
-		<dependency>
-			<groupId>org.gwtproject.core</groupId>
-			<artifactId>gwt-core</artifactId>
-			<version>${gwt-core.ver}</version>
-		</dependency>
-<!--		<dependency>
-			<groupId>com.google.errorprone</groupId>
-			<artifactId>error_prone_annotations</artifactId>
-			<version>2.3.4</version>
-		</dependency>-->
+    <!-- ==================================================================== -->
+    <dependencies>
+        <dependency>
+            <groupId>org.gwtproject.core</groupId>
+            <artifactId>gwt-core</artifactId>
+            <version>${gwt-core.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <scope>provided</scope>
+            <version>1.3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.gwtproject.typedarrays</groupId>
+            <artifactId>gwt-typedarrays</artifactId>
+            <version>${gwt-typedarrays.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.elemental2</groupId>
+            <artifactId>elemental2-core</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.treblereel.gwt.nio</groupId>
+            <artifactId>gwt-nio</artifactId>
+            <version>${gwt-nio.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.gwtproject.xhr</groupId>
+            <artifactId>gwt-xhr</artifactId>
+            <version>${gwt-xhr.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.jsinterop</groupId>
+            <artifactId>jsinterop-annotations</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.30</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-client</artifactId>
+            <version>9.2.14.v20151106</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.jsinterop</groupId>
+            <artifactId>base</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.gwtproject.regexp</groupId>
+            <artifactId>gwt-regexp</artifactId>
+            <version>${gwt-regexp.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>2.9.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>2.9.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
+    <!-- ==================================================================== -->
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
 
-<!--		<dependency>
-			<groupId>org.jresearch.gwt.time</groupId>
-			<artifactId>org.jresearch.gwt.time.apt.annotation</artifactId>
-			<version>${time.apt.ver}</version>
-		</dependency>-->
-
-		<dependency>
-			<groupId>com.google.code.findbugs</groupId>
-			<artifactId>jsr305</artifactId>
-			<scope>provided</scope>
-			<version>1.3.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.gwtproject.typedarrays</groupId>
-			<artifactId>gwt-typedarrays</artifactId>
-			<version>${gwt-typedarrays.ver}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.elemental2</groupId>
-			<artifactId>elemental2-core</artifactId>
-			<version>1.1.0</version>
-		</dependency>
-<!--		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.30</version>
-		</dependency>-->
-		<dependency>
-			<groupId>org.treblereel.gwt.nio</groupId>
-			<artifactId>gwt-nio</artifactId>
-			<version>${gwt-nio.ver}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.gwtproject.xhr</groupId>
-			<artifactId>gwt-xhr</artifactId>
-			<version>${gwt-xhr.ver}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.jsinterop</groupId>
-			<artifactId>jsinterop-annotations</artifactId>
-			<version>2.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.7.30</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.2.3</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-client</artifactId>
-			<version>9.2.14.v20151106</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.jsinterop</groupId>
-			<artifactId>base</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.gwtproject.regexp</groupId>
-			<artifactId>gwt-regexp</artifactId>
-			<version>${gwt-regexp.ver}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<version>2.9.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-dev</artifactId>
-			<version>2.9.0</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<!-- ==================================================================== -->
-	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-
-		<gwt-regexp.ver>1.0.0-RC1</gwt-regexp.ver>
-		<gwt-typedarrays.ver>1.0.0-RC2</gwt-typedarrays.ver>
-		<gwt-nio.ver>1.0</gwt-nio.ver>
-		<gwt-xhr.ver>1.0.0-RC1</gwt-xhr.ver>
-		<gwt-slf4j.ver>1.0.0</gwt-slf4j.ver>
-		<time.apt.ver>2.0.2</time.apt.ver>
-		<gwt.version>2.9.0</gwt.version>
-		<elemental.ver>1.1.0</elemental.ver>
-		<jsinterop-annotations.ver>2.0.0</jsinterop-annotations.ver>
-		<jsinterop-base.ver>1.0.0</jsinterop-base.ver>
-		<gwt-core.ver>1.0.0-RC1</gwt-core.ver>
-	</properties>
+        <gwt-regexp.ver>1.0.0-RC1</gwt-regexp.ver>
+        <gwt-typedarrays.ver>1.0.0-RC2</gwt-typedarrays.ver>
+        <gwt-nio.ver>1.0</gwt-nio.ver>
+        <gwt-xhr.ver>1.0.0-RC1</gwt-xhr.ver>
+        <gwt-slf4j.ver>1.0.0</gwt-slf4j.ver>
+        <time.apt.ver>2.0.2</time.apt.ver>
+        <gwt.version>2.9.0</gwt.version>
+        <elemental.ver>1.1.0</elemental.ver>
+        <jsinterop-annotations.ver>2.0.0</jsinterop-annotations.ver>
+        <jsinterop-base.ver>1.0.0</jsinterop-base.ver>
+        <gwt-core.ver>1.0.0-RC1</gwt-core.ver>
+    </properties>
 </project>
