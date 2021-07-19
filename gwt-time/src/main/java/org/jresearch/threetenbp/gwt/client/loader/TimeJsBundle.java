@@ -1,27 +1,29 @@
 package org.jresearch.threetenbp.gwt.client.loader;
 
+import org.gwtproject.resources.client.ClientBundle;
+import org.gwtproject.resources.client.DataResource;
+import org.gwtproject.resources.client.Resource;
+import org.gwtproject.resources.client.TextResource;
+
 import javax.annotation.Nonnull;
 
-import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.DataResource;
-import com.google.gwt.resources.client.TextResource;
-
+//@Resource
 public interface TimeJsBundle extends ClientBundle {
 
 	@Nonnull
 	@Source("support.js")
-	public TextResource support();
+	TextResource support();
 
 	@Nonnull
 	@Source("base64-binary.js")
-	public TextResource base64binary();
+	TextResource base64binary();
 
 	@Nonnull
 	@Source("TZDB.dat")
-	public DataResource tzdb();
+	DataResource tzdb();
 
 	@Nonnull
 	@Source("TZDB.txt")
-	public TextResource tzdbEncoded();
+	TextResource tzdbEncoded();
 
 }

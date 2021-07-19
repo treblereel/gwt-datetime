@@ -1,7 +1,5 @@
 package java.util;
 
-import com.google.gwt.i18n.client.LocaleInfo;
-
 @SuppressWarnings("nls")
 public final class Locale {
 
@@ -38,7 +36,7 @@ public final class Locale {
 	private String languageTag;
 
 	static {
-		String localeName = LocaleInfo.getCurrentLocale().getLocaleName();
+		String localeName = getCurrentLocale();
 		if (!"default".equalsIgnoreCase(localeName)) {
 			String[] split = localeName.split("_", 3);
 			if (split.length == 1) {
@@ -50,6 +48,11 @@ public final class Locale {
 			}
 		}
 	}
+
+	private static native String getCurrentLocale() /*-{
+		var currentLocale =  @com.google.gwt.i18n.client.LocaleInfo::getCurrentLocale()();
+		return currentLocale.@com.google.gwt.i18n.client.LocaleInfo::getLocaleName()();
+	}-*/;
 
 	public Locale(String language, String region, String script, String variant) {
 		if (language == null || script == null || region == null || variant == null) {

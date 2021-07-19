@@ -16,9 +16,8 @@ import org.gwtproject.xhr.client.ReadyStateChangeHandler;
 import org.gwtproject.xhr.client.XMLHttpRequest;
 import org.gwtproject.xhr.client.XMLHttpRequest.ResponseType;
 import org.jresearch.threetenbp.gwt.client.loader.TimeJsBundle;
+import org.jresearch.threetenbp.gwt.client.loader.TimeJsBundleImpl;
 import org.jresearch.threetenbp.gwt.client.locale.Locales;
-
-import com.google.gwt.core.client.GWT;
 
 import elemental2.core.ArrayBuffer;
 import jsinterop.base.Js;
@@ -26,7 +25,8 @@ import jsinterop.base.Js;
 @SuppressWarnings("nls")
 public class Support {
 
-	private static final TimeJsBundle bundle = GWT.create(TimeJsBundle.class);
+	//private static final TimeJsBundle bundle = GWT.create(TimeJsBundle.class);
+	private static final TimeJsBundle bundle = new TimeJsBundleImpl();
 
 	private static boolean commonInitialized = false;
 	private static boolean tzTnitializing = false;
