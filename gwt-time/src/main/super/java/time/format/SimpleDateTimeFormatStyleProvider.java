@@ -31,8 +31,6 @@
  */
 package java.time.format;
 
-import java.text.SimpleDateFormat;
-import java.time.chrono.Chronology;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -40,22 +38,23 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Stream;
 
-import org.jresearch.threetenbp.gwt.client.base.Bases;
-import org.jresearch.threetenbp.gwt.client.base.Chrono;
-import org.jresearch.threetenbp.gwt.client.Support;
-import org.jresearch.threetenbp.gwt.client.cldr.LocaleInfo;
-import org.jresearch.threetenbp.gwt.client.cldr.PatternCoordinates;
-import org.jresearch.threetenbp.gwt.client.cldr.PatternInfo;
+import org.jresearch.gwt.time.apt.base.Bases;
+import org.jresearch.gwt.time.apt.base.Chrono;
+import org.jresearch.gwt.time.apt.data.client.PatternCoordinates;
+import org.jresearch.gwt.time.apt.data.client.PatternInfo;
+import java.time.chrono.Chronology;
+import org.jresearch.threetenbp.gwt.time.client.Support;
+import org.jresearch.threetenbp.gwt.time.client.locale.LocaleWrapper;
+
 
 /**
  * The Service Provider Implementation to obtain date-time formatters for a style.
  * <p>
- * This implementation is based on extraction of data from a {@link SimpleDateFormat}.
+ * This implementation is based on extraction of data from a {SimpleDateFormat}.
  *
  * <h3>Specification for implementors</h3>
  * This class is immutable and thread-safe.
  */
-@SuppressWarnings("nls")
 final class SimpleDateTimeFormatStyleProvider extends DateTimeFormatStyleProvider {
     // TODO: Better implementation based on CLDR
 
@@ -66,7 +65,7 @@ final class SimpleDateTimeFormatStyleProvider extends DateTimeFormatStyleProvide
     @Override
 	// GWT Specific
     public Locale[] getAvailableLocales() {
-		return Support.supportedLocalesOfDateTimeFormat(LocaleInfo.LOCALES);
+		return Support.supportedLocalesOfDateTimeFormat(LocaleWrapper.getAvailableLocales());
     }
 
     @Override
@@ -85,7 +84,7 @@ final class SimpleDateTimeFormatStyleProvider extends DateTimeFormatStyleProvide
 
 //GWT Specific Localized patterns
 		String pattern = null;
-		Chrono c = Bases.ofJavaTine(chrono).orElse(Chrono.ISO);
+		Chrono c = Bases.ofJavaTime(chrono.getId()).orElse(Chrono.ISO);
 		if (dateStyle != null) {
 			Map<String, PatternCoordinates[]> dateMap = getDateMap(dateStyle);
 			String datePattern = getPattern(dateMap, c, locale);
@@ -130,16 +129,18 @@ final class SimpleDateTimeFormatStyleProvider extends DateTimeFormatStyleProvide
 		return chrono.equals(pc.chrono()) && locale.equals(pc.locale());
 	}
 
-	private static Locale up(Locale locale) {
+	private static Locale up(Locale l) {
+    	throw new Error(SimpleDateTimeFormatStyleProvider.class.getCanonicalName());
+/*		LocaleWrapper locale = LocaleWrapper.getInstance(l);
 		String variant = locale.getVariant();
 		if (variant.isEmpty()) {
 			String country = locale.getCountry();
 			if (country.isEmpty()) {
-				return LocaleInfo.ROOT;
+				return Locale.ROOT;
 			}
 			return new Locale(locale.getLanguage());
 		}
-		return new Locale(locale.getLanguage(), locale.getCountry());
+		return new Locale(locale.getLanguage(), locale.getCountry());*/
 	}
 
 	private static Map<String, PatternCoordinates[]> getTimeMap(FormatStyle style) {

@@ -54,6 +54,11 @@
         <maven.resource.plugin>3.2.0</maven.resource.plugin>
         <maven.failsafe.plugin>3.0.0-M5</maven.failsafe.plugin>
         <maven.j2cl.plugin>0.17-SNAPSHOT</maven.j2cl.plugin>
+
+        <javaparser.core.version>3.20.2</javaparser.core.version>
+
+        <auto.common.version>0.10</auto.common.version>
+        <auto.service.version>1.0-rc6</auto.service.version>
     </properties>
 
     <build>
@@ -123,6 +128,7 @@
                     <version>${maven.surfire.plugin}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-shade-plugin</artifactId>
                     <version>${maven.shade.plugin}</version>
                 </plugin>
@@ -166,6 +172,11 @@
                     <version>${maven.failsafe.plugin}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven.source.plugin}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
                     <version>${maven.jetty.plugin}</version>
@@ -183,11 +194,11 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.8.1</version>
             </plugin>
-<!--            <plugin>
-                <groupId>com.coveo</groupId>
-                <artifactId>fmt-maven-plugin</artifactId>
-                <version>3.8.1</version>
-            </plugin>-->
+            <!--            <plugin>
+                            <groupId>com.coveo</groupId>
+                            <artifactId>fmt-maven-plugin</artifactId>
+                            <version>3.8.1</version>
+                        </plugin>-->
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
@@ -269,21 +280,13 @@
     </profiles>
 
     <modules>
+        <module>gwt-cldr</module>
         <module>gwt-i18n</module>
-<!--
-        <module>gwt-locale</module>
--->
+        <module>gwt-i18n-processor</module>
+        <!--
+                <module>gwt-tzdb</module>
+        -->
         <module>gwt-time</module>
-
-        <!--        <module>gwt-i18n</module>
-                <module>gwt-datetimeformat-processor</module>
-                <module>gwt-i18n-processor-util</module>
-                <module>gwt-i18n-processor</module>
-                <module>gwt-datetimeformat</module>
-                <module>gwt-localizable-processor</module>
-                <module>gwt-numberformat</module>
-                <module>gwt-i18n-j2cl-tests</module>
-                <module>gwt-i18n-gwt2-tests</module>-->
     </modules>
 
 </project>

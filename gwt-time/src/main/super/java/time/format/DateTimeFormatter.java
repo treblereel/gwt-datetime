@@ -476,7 +476,7 @@ public final class DateTimeFormatter {
      * The localized decimal style is not used.
      * <p>
      * This is a special case formatter intended to allow a human readable form
-     * of an {@link java.time.Instant Instant}.
+     * of an {@link org.jresearch.threetenbp.gwt.emu.java.time.Instant Instant}.
      * The {@code Instant} class is designed to
      * only represent a point in time and internally stores a value in nanoseconds
      * from a fixed epoch of 1970-01-01Z. As such, an {@code Instant} cannot be

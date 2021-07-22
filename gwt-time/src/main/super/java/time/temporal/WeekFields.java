@@ -42,12 +42,6 @@ import static java.time.temporal.ChronoUnit.WEEKS;
 import static java.time.temporal.ChronoUnit.YEARS;
 
 import java.io.Serializable;
-import java.time.DateTimeException;
-import java.time.DayOfWeek;
-import java.time.Year;
-import java.time.chrono.ChronoLocalDate;
-import java.time.chrono.Chronology;
-import java.time.format.ResolverStyle;
 import java.util.EnumSet;
 import java.util.Locale;
 import java.util.Map;
@@ -56,9 +50,15 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import org.jresearch.threetenbp.gwt.client.cldr.Cldrs;
-import org.jresearch.threetenbp.gwt.client.cldr.Region;
-import org.jresearch.threetenbp.gwt.client.cldr.WeekInfo;
+import org.jresearch.gwt.time.apt.data.client.Region;
+import org.jresearch.gwt.time.apt.data.client.WeekInfo;
+import java.time.DateTimeException;
+import java.time.DayOfWeek;
+import java.time.Year;
+import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.Chronology;
+import java.time.format.ResolverStyle;
+import org.jresearch.threetenbp.gwt.time.client.cldr.Cldrs;
 
 /**
  * Localized definitions of the day-of-week, week-of-month and week-of-year fields.
@@ -200,16 +200,11 @@ public final class WeekFields implements Serializable {
      */
 	// GWT Specific
     public static WeekFields of(Locale locale) {
-
-        /**
-         * THIS MUST BE FIXED
-         */
-/*        Objects.requireNonNull(locale, "locale");
+        Objects.requireNonNull(locale, "locale");
 		Region region = Cldrs.regionOf(locale);
-		DayOfWeek dow = filter(WeekInfo.FIRST_DAY, region, WeekInfo.DEFAULT_FIRST_DAY);
+		DayOfWeek dow = DayOfWeek.of(filter(WeekInfo.FIRST_DAY, region, WeekInfo.DEFAULT_FIRST_DAY));
 		int minDays = filter(WeekInfo.MIN_DAYS, region, WeekInfo.DEFAULT_MIN_DAYS).intValue();
-		return WeekFields.of(dow, minDays);*/
-		return null;
+		return WeekFields.of(dow, minDays);
 	}
 
 	private static <R> R filter(Map<R, EnumSet<Region>> map, Region region, R defaultValue) {

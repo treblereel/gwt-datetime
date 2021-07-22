@@ -68,6 +68,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import org.jresearch.threetenbp.gwt.time.client.locale.LocaleWrapper;
+
 /**
  * The Japanese Imperial calendar system.
  * <p>
@@ -99,7 +101,7 @@ import java.util.Objects;
 public final class JapaneseChronology extends Chronology implements Serializable {
 
     // Locale for creating a JapaneseImpericalCalendar.
-	static final Locale LOCALE = new Locale("ja", "JP", "JP");
+	static final LocaleWrapper LOCALE = new LocaleWrapper("ja", "JP", "JP");
 
     /**
      * Singleton instance for Japanese chronology.

@@ -322,7 +322,7 @@ public final class OffsetDateTime
      * such as {@code 2007-12-23T10:15:30+01:00}.
      * <p>
      * The string must represent a valid date-time and is parsed using
-     * {@link java.time.format.DateTimeFormatter#ISO_OFFSET_DATE_TIME}.
+     * {@link org.jresearch.threetenbp.gwt.emu.java.time.format.DateTimeFormatter#ISO_OFFSET_DATE_TIME}.
      *
      * @param text  the text to parse such as "2007-12-23T10:15:30+01:00", not null
      * @return the parsed offset date-time, not null

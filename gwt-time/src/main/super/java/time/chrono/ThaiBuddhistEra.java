@@ -33,8 +33,6 @@ package java.time.chrono;
 
 import static java.time.temporal.ChronoField.ERA;
 
-import java.io.DataInput;
-import java.io.DataOutput;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.chrono.Era;

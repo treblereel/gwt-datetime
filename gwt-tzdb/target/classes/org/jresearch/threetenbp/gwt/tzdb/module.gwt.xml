@@ -1,0 +1,11 @@
+<module rename-to="threetenbpTzdbGwt">
+  <inherits name="org.jresearch.threetenbp.gwt.module"/>
+  <inherits name="org.gwtproject.typedarrays.TypedArrays"/>
+  <inherits name="org.jresearch.gwt.time.apt.module"/>
+  <inherits name="com.google.gwt.regexp.RegExp"/>
+  <inherits name="org.gwtproject.nio.GwtNioSupport"/>
+  <entry-point class="org.jresearch.threetenbp.gwt.tzdb.client.TzdbEntryPoint"/>
+  <source path="client"/>
+  <source path="shared"/>
+  <super-source path="super"/>
+</module>

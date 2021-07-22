@@ -3,7 +3,9 @@
 	<inherits name="com.google.gwt.regexp.RegExp" />
 	<inherits name="org.gwtproject.nio.GwtNioSupport" />
 	<inherits name="org.gwtproject.resources.Resources" />
-<!--
-	<set-property name="gwt.logging.logLevel" value="FINEST"/>
--->
+	<inherits name="org.jresearch.gwt.time.TimeBase" />
+
+	<source path="client" />
+	<super-source path="super" />
+
 </module>

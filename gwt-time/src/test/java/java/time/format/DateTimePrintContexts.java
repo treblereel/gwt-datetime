@@ -1,6 +1,5 @@
 package java.time.format;
 
-import java.time.LocalTime;
 import java.time.temporal.TemporalAccessor;
 import java.util.Locale;
 

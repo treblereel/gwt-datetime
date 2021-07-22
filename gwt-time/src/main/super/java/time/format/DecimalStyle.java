@@ -39,9 +39,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import org.jresearch.threetenbp.gwt.client.DecimalProperty;
-import org.jresearch.threetenbp.gwt.client.Support;
-import org.jresearch.threetenbp.gwt.client.cldr.LocaleInfo;
+import org.jresearch.threetenbp.gwt.time.client.Support;
+import org.jresearch.threetenbp.gwt.time.client.DecimalProperty;
+import org.jresearch.threetenbp.gwt.time.client.locale.LocaleWrapper;
 
 /**
  * Localized symbols used in date and time formatting.
@@ -94,7 +94,7 @@ public final class DecimalStyle {
 	 */
 	// GWT Specific
 	public static Set<Locale> getAvailableLocales() {
-		Locale[] locales = Support.supportedLocalesOfNumberFormat(LocaleInfo.LOCALES);
+		Locale[] locales = Support.supportedLocalesOfNumberFormat(LocaleWrapper.getAvailableLocales());
 		HashSet<Locale> result = new HashSet<>();
 		Collections.addAll(result, locales);
 		return result;
@@ -133,7 +133,7 @@ public final class DecimalStyle {
 	// GWT Specific
 	private static DecimalStyle create(Locale locale) {
 //		DecimalFormatSymbols oldSymbols = DecimalFormatSymbols.getInstance(locale);
-		DecimalProperty property = Support.displayNumber(locale.toLanguageTag());
+		DecimalProperty property = Support.displayNumber(LocaleWrapper.getInstance(locale).toLanguageTag());
 		char zeroDigit = property.zeroDigit.charAt(0);
 		char positiveSign = property.positiveSign.charAt(0);
 		char negativeSign = property.negativeSign.charAt(0);
@@ -293,7 +293,7 @@ public final class DecimalStyle {
 	 * @param ch the character to check
 	 * @return the value, 0 to 9, of the character, or -1 if not a digit
 	 */
-	int convertToDigit(char ch) {
+	public int convertToDigit(char ch) {
 		int val = ch - zeroDigit;
 		return (val >= 0 && val <= 9) ? val : -1;
 	}

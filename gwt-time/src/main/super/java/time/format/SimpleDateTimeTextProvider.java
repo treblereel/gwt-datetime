@@ -36,15 +36,21 @@ import static java.time.temporal.ChronoField.DAY_OF_WEEK;
 import static java.time.temporal.ChronoField.ERA;
 import static java.time.temporal.ChronoField.MONTH_OF_YEAR;
 
+import elemental2.dom.DomGlobal;
+import java.time.Month;
+import java.time.chrono.IsoEra;
 import java.time.temporal.IsoFields;
 import java.time.temporal.TemporalField;
+import org.jresearch.threetenbp.gwt.time.client.Support;
+import org.jresearch.threetenbp.gwt.time.client.locale.LocaleWrapper;
+
 //import java.text.DateFormatSymbols;
 import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.ArrayList;
-import java.util.Calendar;
+//import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.GregorianCalendar;
+//import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -53,10 +59,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
-import elemental2.dom.DomGlobal;
-
-import org.jresearch.threetenbp.gwt.client.Support;
 
 /**
  * The Service Provider Implementation to obtain date-time text for a field.
@@ -78,6 +80,10 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
         }
     };
 
+	// GWT specific
+	private static final int AM = 0;
+	private static final int PM = 1;
+
     /** Cache. */
     private final ConcurrentMap<Entry<TemporalField, Locale>, Object> cache =
             new ConcurrentHashMap<Entry<TemporalField, Locale>, Object>(16, 0.75f);
@@ -85,7 +91,7 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
     //-----------------------------------------------------------------------
     @Override
     public String getText(TemporalField field, long value, TextStyle style, Locale locale) {
-//		LOGGER.trace("Return text for field {}, value {}, style {}, locale {}", field, value, style, locale);
+		DomGlobal.console.debug("Return text for field {}, value {}, style {}, locale {}", field, value, style, locale);
         Object store = findStore(field, locale);
         if (store instanceof LocaleStore) {
             return ((LocaleStore) store).getText(value, style);
@@ -130,100 +136,100 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
             Long f10 = 10L;
             Long f11 = 11L;
             Long f12 = 12L;
-			String[] array = Support.displayMonths("long", false, locale.toLanguageTag());
+			String[] array = Support.displayMonths("long", false, LocaleWrapper.getInstance(locale).toLanguageTag());
             Map<Long, String> map = new HashMap<Long, String>();
-            map.put(f1, array[Calendar.JANUARY]);
-            map.put(f2, array[Calendar.FEBRUARY]);
-            map.put(f3, array[Calendar.MARCH]);
-            map.put(f4, array[Calendar.APRIL]);
-            map.put(f5, array[Calendar.MAY]);
-            map.put(f6, array[Calendar.JUNE]);
-            map.put(f7, array[Calendar.JULY]);
-            map.put(f8, array[Calendar.AUGUST]);
-            map.put(f9, array[Calendar.SEPTEMBER]);
-            map.put(f10, array[Calendar.OCTOBER]);
-            map.put(f11, array[Calendar.NOVEMBER]);
-            map.put(f12, array[Calendar.DECEMBER]);
+			map.put(f1, array[Month.JANUARY.ordinal()]);
+			map.put(f2, array[Month.FEBRUARY.ordinal()]);
+			map.put(f3, array[Month.MARCH.ordinal()]);
+			map.put(f4, array[Month.APRIL.ordinal()]);
+			map.put(f5, array[Month.MAY.ordinal()]);
+			map.put(f6, array[Month.JUNE.ordinal()]);
+			map.put(f7, array[Month.JULY.ordinal()]);
+			map.put(f8, array[Month.AUGUST.ordinal()]);
+			map.put(f9, array[Month.SEPTEMBER.ordinal()]);
+			map.put(f10, array[Month.OCTOBER.ordinal()]);
+			map.put(f11, array[Month.NOVEMBER.ordinal()]);
+			map.put(f12, array[Month.DECEMBER.ordinal()]);
             styleMap.put(TextStyle.FULL, map);
 
-			array = Support.displayMonths("long", true, locale.toLanguageTag());
+			array = Support.displayMonths("long", true,  LocaleWrapper.getInstance(locale).toLanguageTag());
 			map = new HashMap<Long, String>();
-			map.put(f1, array[Calendar.JANUARY]);
-			map.put(f2, array[Calendar.FEBRUARY]);
-			map.put(f3, array[Calendar.MARCH]);
-			map.put(f4, array[Calendar.APRIL]);
-			map.put(f5, array[Calendar.MAY]);
-			map.put(f6, array[Calendar.JUNE]);
-			map.put(f7, array[Calendar.JULY]);
-			map.put(f8, array[Calendar.AUGUST]);
-			map.put(f9, array[Calendar.SEPTEMBER]);
-			map.put(f10, array[Calendar.OCTOBER]);
-			map.put(f11, array[Calendar.NOVEMBER]);
-			map.put(f12, array[Calendar.DECEMBER]);
+			map.put(f1, array[Month.JANUARY.ordinal()]);
+			map.put(f2, array[Month.FEBRUARY.ordinal()]);
+			map.put(f3, array[Month.MARCH.ordinal()]);
+			map.put(f4, array[Month.APRIL.ordinal()]);
+			map.put(f5, array[Month.MAY.ordinal()]);
+			map.put(f6, array[Month.JUNE.ordinal()]);
+			map.put(f7, array[Month.JULY.ordinal()]);
+			map.put(f8, array[Month.AUGUST.ordinal()]);
+			map.put(f9, array[Month.SEPTEMBER.ordinal()]);
+			map.put(f10, array[Month.OCTOBER.ordinal()]);
+			map.put(f11, array[Month.NOVEMBER.ordinal()]);
+			map.put(f12, array[Month.DECEMBER.ordinal()]);
 			styleMap.put(TextStyle.FULL_STANDALONE, map);
 
-			array = Support.displayMonths("short", false, locale.toLanguageTag());
+			array = Support.displayMonths("short", false,  LocaleWrapper.getInstance(locale).toLanguageTag());
 			map = new HashMap<Long, String>();
-			map.put(f1, array[Calendar.JANUARY]);
-			map.put(f2, array[Calendar.FEBRUARY]);
-			map.put(f3, array[Calendar.MARCH]);
-			map.put(f4, array[Calendar.APRIL]);
-			map.put(f5, array[Calendar.MAY]);
-			map.put(f6, array[Calendar.JUNE]);
-			map.put(f7, array[Calendar.JULY]);
-			map.put(f8, array[Calendar.AUGUST]);
-			map.put(f9, array[Calendar.SEPTEMBER]);
-			map.put(f10, array[Calendar.OCTOBER]);
-			map.put(f11, array[Calendar.NOVEMBER]);
-			map.put(f12, array[Calendar.DECEMBER]);
+			map.put(f1, array[Month.JANUARY.ordinal()]);
+			map.put(f2, array[Month.FEBRUARY.ordinal()]);
+			map.put(f3, array[Month.MARCH.ordinal()]);
+			map.put(f4, array[Month.APRIL.ordinal()]);
+			map.put(f5, array[Month.MAY.ordinal()]);
+			map.put(f6, array[Month.JUNE.ordinal()]);
+			map.put(f7, array[Month.JULY.ordinal()]);
+			map.put(f8, array[Month.AUGUST.ordinal()]);
+			map.put(f9, array[Month.SEPTEMBER.ordinal()]);
+			map.put(f10, array[Month.OCTOBER.ordinal()]);
+			map.put(f11, array[Month.NOVEMBER.ordinal()]);
+			map.put(f12, array[Month.DECEMBER.ordinal()]);
 			styleMap.put(TextStyle.SHORT, map);
 
-			array = Support.displayMonths("short", true, locale.toLanguageTag());
+			array = Support.displayMonths("short", true,  LocaleWrapper.getInstance(locale).toLanguageTag());
             map = new HashMap<Long, String>();
-			map.put(f1, array[Calendar.JANUARY]);
-			map.put(f2, array[Calendar.FEBRUARY]);
-			map.put(f3, array[Calendar.MARCH]);
-			map.put(f4, array[Calendar.APRIL]);
-			map.put(f5, array[Calendar.MAY]);
-			map.put(f6, array[Calendar.JUNE]);
-			map.put(f7, array[Calendar.JULY]);
-			map.put(f8, array[Calendar.AUGUST]);
-			map.put(f9, array[Calendar.SEPTEMBER]);
-			map.put(f10, array[Calendar.OCTOBER]);
-			map.put(f11, array[Calendar.NOVEMBER]);
-			map.put(f12, array[Calendar.DECEMBER]);
+			map.put(f1, array[Month.JANUARY.ordinal()]);
+			map.put(f2, array[Month.FEBRUARY.ordinal()]);
+			map.put(f3, array[Month.MARCH.ordinal()]);
+			map.put(f4, array[Month.APRIL.ordinal()]);
+			map.put(f5, array[Month.MAY.ordinal()]);
+			map.put(f6, array[Month.JUNE.ordinal()]);
+			map.put(f7, array[Month.JULY.ordinal()]);
+			map.put(f8, array[Month.AUGUST.ordinal()]);
+			map.put(f9, array[Month.SEPTEMBER.ordinal()]);
+			map.put(f10, array[Month.OCTOBER.ordinal()]);
+			map.put(f11, array[Month.NOVEMBER.ordinal()]);
+			map.put(f12, array[Month.DECEMBER.ordinal()]);
 			styleMap.put(TextStyle.SHORT_STANDALONE, map);
 
-			array = Support.displayMonths("narrow", false, locale.toLanguageTag());
+			array = Support.displayMonths("narrow", false,  LocaleWrapper.getInstance(locale).toLanguageTag());
 			map = new HashMap<Long, String>();
-			map.put(f1, array[Calendar.JANUARY]);
-			map.put(f2, array[Calendar.FEBRUARY]);
-			map.put(f3, array[Calendar.MARCH]);
-			map.put(f4, array[Calendar.APRIL]);
-			map.put(f5, array[Calendar.MAY]);
-			map.put(f6, array[Calendar.JUNE]);
-			map.put(f7, array[Calendar.JULY]);
-			map.put(f8, array[Calendar.AUGUST]);
-			map.put(f9, array[Calendar.SEPTEMBER]);
-			map.put(f10, array[Calendar.OCTOBER]);
-			map.put(f11, array[Calendar.NOVEMBER]);
-			map.put(f12, array[Calendar.DECEMBER]);
+			map.put(f1, array[Month.JANUARY.ordinal()]);
+			map.put(f2, array[Month.FEBRUARY.ordinal()]);
+			map.put(f3, array[Month.MARCH.ordinal()]);
+			map.put(f4, array[Month.APRIL.ordinal()]);
+			map.put(f5, array[Month.MAY.ordinal()]);
+			map.put(f6, array[Month.JUNE.ordinal()]);
+			map.put(f7, array[Month.JULY.ordinal()]);
+			map.put(f8, array[Month.AUGUST.ordinal()]);
+			map.put(f9, array[Month.SEPTEMBER.ordinal()]);
+			map.put(f10, array[Month.OCTOBER.ordinal()]);
+			map.put(f11, array[Month.NOVEMBER.ordinal()]);
+			map.put(f12, array[Month.DECEMBER.ordinal()]);
             styleMap.put(TextStyle.NARROW, map);
 
-			array = Support.displayMonths("narrow", true, locale.toLanguageTag());
+			array = Support.displayMonths("narrow", true,  LocaleWrapper.getInstance(locale).toLanguageTag());
             map = new HashMap<Long, String>();
-            map.put(f1, array[Calendar.JANUARY]);
-            map.put(f2, array[Calendar.FEBRUARY]);
-            map.put(f3, array[Calendar.MARCH]);
-            map.put(f4, array[Calendar.APRIL]);
-            map.put(f5, array[Calendar.MAY]);
-            map.put(f6, array[Calendar.JUNE]);
-            map.put(f7, array[Calendar.JULY]);
-            map.put(f8, array[Calendar.AUGUST]);
-            map.put(f9, array[Calendar.SEPTEMBER]);
-            map.put(f10, array[Calendar.OCTOBER]);
-            map.put(f11, array[Calendar.NOVEMBER]);
-            map.put(f12, array[Calendar.DECEMBER]);
+			map.put(f1, array[Month.JANUARY.ordinal()]);
+			map.put(f2, array[Month.FEBRUARY.ordinal()]);
+			map.put(f3, array[Month.MARCH.ordinal()]);
+			map.put(f4, array[Month.APRIL.ordinal()]);
+			map.put(f5, array[Month.MAY.ordinal()]);
+			map.put(f6, array[Month.JUNE.ordinal()]);
+			map.put(f7, array[Month.JULY.ordinal()]);
+			map.put(f8, array[Month.AUGUST.ordinal()]);
+			map.put(f9, array[Month.SEPTEMBER.ordinal()]);
+			map.put(f10, array[Month.OCTOBER.ordinal()]);
+			map.put(f11, array[Month.NOVEMBER.ordinal()]);
+			map.put(f12, array[Month.DECEMBER.ordinal()]);
 			styleMap.put(TextStyle.NARROW_STANDALONE, map);
             return createLocaleStore(styleMap);
         }
@@ -237,8 +243,8 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
             Long f6 = 6L;
             Long f7 = 7L;
 
-			String[] array = Support.displayWeekdays("long", false, locale.toLanguageTag());
-			DomGlobal.console.trace("weekdays, long, locale {}, formated {}", locale, array);
+			String[] array = Support.displayWeekdays("long", false,  LocaleWrapper.getInstance(locale).toLanguageTag());
+			DomGlobal.console.debug("weekdays, long, locale {}, formated {}", locale, array);
             Map<Long, String> map = new HashMap<Long, String>();
 			map.put(f1, array[0]);
 			map.put(f2, array[1]);
@@ -249,8 +255,8 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
 			map.put(f7, array[6]);
             styleMap.put(TextStyle.FULL, map);
 
-			array = Support.displayWeekdays("long", true, locale.toLanguageTag());
-            DomGlobal.console.trace("weekdays, long, locale {}, standalone {}", locale, array);
+			array = Support.displayWeekdays("long", true,  LocaleWrapper.getInstance(locale).toLanguageTag());
+			DomGlobal.console.debug("weekdays, long, locale {}, standalone {}", locale, array);
 			map = new HashMap<Long, String>();
 			map.put(f1, array[0]);
 			map.put(f2, array[1]);
@@ -261,7 +267,7 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
 			map.put(f7, array[6]);
 			styleMap.put(TextStyle.FULL_STANDALONE, map);
 
-			array = Support.displayWeekdays("short", false, locale.toLanguageTag());
+			array = Support.displayWeekdays("short", false,  LocaleWrapper.getInstance(locale).toLanguageTag());
             map = new HashMap<Long, String>();
 			map.put(f1, array[0]);
 			map.put(f2, array[1]);
@@ -272,7 +278,7 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
 			map.put(f7, array[6]);
 			styleMap.put(TextStyle.SHORT, map);
 
-			array = Support.displayWeekdays("short", true, locale.toLanguageTag());
+			array = Support.displayWeekdays("short", true,  LocaleWrapper.getInstance(locale).toLanguageTag());
 			map = new HashMap<Long, String>();
 			map.put(f1, array[0]);
 			map.put(f2, array[1]);
@@ -283,7 +289,7 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
 			map.put(f7, array[6]);
 			styleMap.put(TextStyle.SHORT_STANDALONE, map);
 
-			array = Support.displayWeekdays("narrow", false, locale.toLanguageTag());
+			array = Support.displayWeekdays("narrow", false,  LocaleWrapper.getInstance(locale).toLanguageTag());
             map = new HashMap<Long, String>();
 			map.put(f1, array[0]);
 			map.put(f2, array[1]);
@@ -294,7 +300,7 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
 			map.put(f7, array[6]);
 			styleMap.put(TextStyle.NARROW, map);
 
-			array = Support.displayWeekdays("narrow", true, locale.toLanguageTag());
+			array = Support.displayWeekdays("narrow", true,  LocaleWrapper.getInstance(locale).toLanguageTag());
 			map = new HashMap<Long, String>();
 			map.put(f1, array[0]);
 			map.put(f2, array[1]);
@@ -309,22 +315,22 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
         if (field == AMPM_OF_DAY) {
             Map<TextStyle, Map<Long, String>> styleMap = new HashMap<TextStyle, Map<Long,String>>();
 
-			String[] array = Support.displayAmpm("long", locale.toLanguageTag());
+			String[] array = Support.displayAmpm("long",  LocaleWrapper.getInstance(locale).toLanguageTag());
             Map<Long, String> map = new HashMap<Long, String>();
-            map.put(0L, array[Calendar.AM]);
-            map.put(1L, array[Calendar.PM]);
+			map.put(0L, array[AM]);
+			map.put(1L, array[PM]);
             styleMap.put(TextStyle.FULL, map);
 
-			array = Support.displayAmpm("short", locale.toLanguageTag());
+			array = Support.displayAmpm("short",  LocaleWrapper.getInstance(locale).toLanguageTag());
 			map = new HashMap<Long, String>();
-			map.put(0L, array[Calendar.AM]);
-			map.put(1L, array[Calendar.PM]);
+			map.put(0L, array[AM]);
+			map.put(1L, array[PM]);
 			styleMap.put(TextStyle.SHORT, map);
 
-			array = Support.displayAmpm("narrow", locale.toLanguageTag());
+			array = Support.displayAmpm("narrow",  LocaleWrapper.getInstance(locale).toLanguageTag());
 			map = new HashMap<Long, String>();
-			map.put(0L, array[Calendar.AM]);
-			map.put(1L, array[Calendar.PM]);
+			map.put(0L, array[AM]);
+			map.put(1L, array[PM]);
 			styleMap.put(TextStyle.NARROW, map);
 
             return createLocaleStore(styleMap);
@@ -332,22 +338,22 @@ final class SimpleDateTimeTextProvider extends DateTimeTextProvider {
         if (field == ERA) {
             Map<TextStyle, Map<Long, String>> styleMap = new HashMap<TextStyle, Map<Long,String>>();
 
-			String[] array = Support.displayEras("long", locale.toLanguageTag());
+			String[] array = Support.displayEras("long",  LocaleWrapper.getInstance(locale).toLanguageTag());
             Map<Long, String> map = new HashMap<Long, String>();
-            map.put(0L, array[GregorianCalendar.BC]);
-            map.put(1L, array[GregorianCalendar.AD]);
+			map.put(0L, array[IsoEra.BCE.getValue()]);
+			map.put(1L, array[IsoEra.CE.getValue()]);
 			styleMap.put(TextStyle.FULL, map);
 
-			array = Support.displayEras("short", locale.toLanguageTag());
+			array = Support.displayEras("short",  LocaleWrapper.getInstance(locale).toLanguageTag());
 			map = new HashMap<Long, String>();
-			map.put(0L, array[GregorianCalendar.BC]);
-			map.put(1L, array[GregorianCalendar.AD]);
+			map.put(0L, array[IsoEra.BCE.getValue()]);
+			map.put(1L, array[IsoEra.CE.getValue()]);
             styleMap.put(TextStyle.SHORT, map);
 
-			array = Support.displayEras("narrow", locale.toLanguageTag());
+			array = Support.displayEras("narrow",  LocaleWrapper.getInstance(locale).toLanguageTag());
             map = new HashMap<Long, String>();
-			map.put(0L, array[GregorianCalendar.BC]);
-			map.put(1L, array[GregorianCalendar.AD]);
+			map.put(0L, array[IsoEra.BCE.getValue()]);
+			map.put(1L, array[IsoEra.CE.getValue()]);
             styleMap.put(TextStyle.NARROW, map);
             return createLocaleStore(styleMap);
         }

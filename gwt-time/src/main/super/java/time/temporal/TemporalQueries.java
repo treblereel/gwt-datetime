@@ -237,7 +237,7 @@ public final class TemporalQueries {
      * The query implementation examines the {@link ChronoField#OFFSET_SECONDS OFFSET_SECONDS}
      * field and uses it to create a {@code ZoneOffset}.
      * <p>
-     * The method {@link java.time.ZoneOffset#from(TemporalAccessor)} can be used as a
+     * The method {@link org.jresearch.threetenbp.gwt.emu.java.time.ZoneOffset#from(TemporalAccessor)} can be used as a
      * {@code TemporalQuery} via a method reference, {@code ZoneOffset::from}.
      * This query and {@code ZoneOffset::from} will return the same result if the
      * temporal object contains an offset. If the temporal object does not contain

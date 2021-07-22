@@ -42,7 +42,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.Objects;
-import java.util.TimeZone;
+//import java.util.TimeZone;
 
 /**
  * A clock providing access to the current instant, date and time using a time-zone.
@@ -50,7 +50,7 @@ import java.util.TimeZone;
  * Instances of this class are used to find the current instant, which can be
  * interpreted using the stored time-zone to find the current date and time.
  * As such, a clock can be used instead of {@link System#currentTimeMillis()}
- * and {@link TimeZone#getDefault()}.
+ * and {TimeZone#getDefault()}.
  * <p>
  * Use of a {@code Clock} is optional. All key date-time classes also have a
  * {@code now()} factory method that uses the system clock in the default time zone.

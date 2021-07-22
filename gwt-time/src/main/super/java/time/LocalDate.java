@@ -327,7 +327,7 @@ public final class LocalDate
      * Obtains an instance of {@code LocalDate} from a text string such as {@code 2007-12-23}.
      * <p>
      * The string must represent a valid date and is parsed using
-     * {@link java.time.format.DateTimeFormatter#ISO_LOCAL_DATE}.
+     * {@link org.jresearch.threetenbp.gwt.emu.java.time.format.DateTimeFormatter#ISO_LOCAL_DATE}.
      *
      * @param text  the text to parse such as "2007-12-23", not null
      * @return the parsed local date, not null

@@ -257,7 +257,7 @@ public final class OffsetTime
      * Obtains an instance of {@code OffsetTime} from a text string such as {@code 10:15:30+01:00}.
      * <p>
      * The string must represent a valid time and is parsed using
-     * {@link java.time.format.DateTimeFormatter#ISO_OFFSET_TIME}.
+     * {@link org.jresearch.threetenbp.gwt.emu.java.time.format.DateTimeFormatter#ISO_OFFSET_TIME}.
      *
      * @param text  the text to parse such as "10:15:30+01:00", not null
      * @return the parsed local time, not null

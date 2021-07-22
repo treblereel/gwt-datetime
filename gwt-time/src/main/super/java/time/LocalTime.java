@@ -396,7 +396,7 @@ public final class LocalTime
      * Obtains an instance of {@code LocalTime} from a text string such as {@code 10:15}.
      * <p>
      * The string must represent a valid time and is parsed using
-     * {@link java.time.format.DateTimeFormatter#ISO_LOCAL_TIME}.
+     * {@link org.jresearch.threetenbp.gwt.emu.java.time.format.DateTimeFormatter#ISO_LOCAL_TIME}.
      *
      * @param text the text to parse such as "10:15:30", not null
      * @return the parsed local time, not null

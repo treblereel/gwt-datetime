@@ -522,7 +522,7 @@ public final class ZonedDateTime
      * {@code 2007-12-23T10:15:30+01:00[Europe/Paris]}.
      * <p>
      * The string must represent a valid date-time and is parsed using
-     * {@link java.time.format.DateTimeFormatter#ISO_ZONED_DATE_TIME}.
+     * {@link org.jresearch.threetenbp.gwt.emu.java.time.format.DateTimeFormatter#ISO_ZONED_DATE_TIME}.
      *
      * @param text  the text to parse such as "2007-12-23T10:15:30+01:00[Europe/Paris]", not null
      * @return the parsed zoned date-time, not null

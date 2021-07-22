@@ -44,7 +44,8 @@ import static java.time.temporal.ChronoField.YEAR;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
-import java.text.DateFormat;
+
+import elemental2.dom.DomGlobal;
 import java.time.DateTimeException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -63,6 +64,9 @@ import java.time.temporal.TemporalQuery;
 import java.time.temporal.ValueRange;
 import java.time.temporal.WeekFields;
 import java.time.zone.ZoneRulesProvider;
+import org.jresearch.threetenbp.gwt.time.client.Support;
+import org.jresearch.threetenbp.gwt.time.client.locale.LocaleWrapper;
+
 import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -77,10 +81,6 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
-
-import elemental2.dom.DomGlobal;
-
-import org.jresearch.threetenbp.gwt.client.Support;
 
 /**
  * Builder to create date-time formatters.
@@ -1126,7 +1126,7 @@ public final class DateTimeFormatterBuilder {
      * is used, with {@code IsoChronology} as the fallback.
      * <p>
      * Note that this method provides similar functionality to methods on
-     * {@code DateFormat} such as {@link DateFormat#getDateTimeInstance(int, int)}.
+     * {DateFormat} such as {DateFormat#getDateTimeInstance(int, int)}.
      *
      * @param dateStyle  the date style to use, null means no date required
      * @param timeStyle  the time style to use, null means no time required
@@ -3382,7 +3382,7 @@ public final class DateTimeFormatterBuilder {
             }
 			// GWT Specific
             String style = textStyle.asNormal() == TextStyle.FULL ? "long" :"short";
-			String text = Support.displayTimeZone(daylight, zone.getId(), style, context.getLocale().toLanguageTag());
+			String text = Support.displayTimeZone(daylight, zone.getId(), style, LocaleWrapper.getInstance(context.getLocale()).toLanguageTag());
 //            TimeZone tz = TimeZone.getTimeZone(zone.getId());
 //            int tzstyle = (textStyle.asNormal() == TextStyle.FULL ? TimeZone.LONG : TimeZone.SHORT);
 //            String text = tz.getDisplayName(daylight, tzstyle, context.getLocale());
@@ -3416,7 +3416,7 @@ public final class DateTimeFormatterBuilder {
             if (context.subSequenceEquals(text, position, "UT", 0, 2)) {
                 return parseOffset(context, text, position, "UT");
             }
-			// LOGGER.debug("parse {} from position {} in context {}", text, position, context);
+            DomGlobal.console.debug("parse {} from position {} in context {}", text, position, context);
 
             // this is a poor implementation that handles some but not all of the spec
             // JDK8 has a lot of extra information here
@@ -3424,22 +3424,22 @@ public final class DateTimeFormatterBuilder {
 			String style = textStyle.asNormal() == TextStyle.FULL ? "long" : "short";
             for (String id : ZoneId.getAvailableZoneIds()) {
                 ids.put(id, id);
-                DomGlobal.console.trace("put key {} for ZoneId {}", id, id);
+                DomGlobal.console.debug("put key {} for ZoneId {}", id, id);
 				// GWT Specific
-				String textWinter = Support.displayTimeZone(false, id, style, context.getLocale().toLanguageTag());
+				String textWinter = Support.displayTimeZone(false, id, style, LocaleWrapper.getInstance(context.getLocale()).toLanguageTag());
 //                TimeZone tz = TimeZone.getTimeZone(id);
 //                int tzstyle = (textStyle.asNormal() == TextStyle.FULL ? TimeZone.LONG : TimeZone.SHORT);
 //                String textWinter = tz.getDisplayName(false, tzstyle, context.getLocale());
 				if (id.startsWith("Etc/") || (!textWinter.startsWith("GMT+") && !textWinter.startsWith("GMT-"))) {
 					ids.put(normalizedZoneCustomId(textWinter), id);
-                    DomGlobal.console.trace("put key {} for ZoneId {}", normalizedZoneCustomId(textWinter), id);
+                    DomGlobal.console.debug("put key {} for ZoneId {}", normalizedZoneCustomId(textWinter), id);
                 }
 				// GWT Specific
 //              String textSummer = tz.getDisplayName(true, tzstyle, context.getLocale());
-				String textSummer = Support.displayTimeZone(true, id, style, context.getLocale().toLanguageTag());
+				String textSummer = Support.displayTimeZone(true, id, style, LocaleWrapper.getInstance(context.getLocale()).toLanguageTag());
 				if (id.startsWith("Etc/") || (!textSummer.startsWith("GMT+") && !textSummer.startsWith("GMT-"))) {
 					ids.put(normalizedZoneCustomId(textSummer), id);
-                    DomGlobal.console.trace("put key {} for ZoneId {}", normalizedZoneCustomId(textSummer), id);
+                    DomGlobal.console.debug("put key {} for ZoneId {}", normalizedZoneCustomId(textSummer), id);
                 }
             }
             for (Entry<String, String> entry : ids.entrySet()) {
@@ -3481,9 +3481,9 @@ public final class DateTimeFormatterBuilder {
                 return result;
             } catch (DateTimeException dte) {
                 return ~position;
-            }       
+			}
 		}
-			
+
 		private String normalizedZoneCustomId(String zoneCustomId) {
 			String result = zoneCustomId;
 			int length = zoneCustomId.length();

@@ -1,10 +1,7 @@
 package java.time.format;
 
-import java.time.format.DateTimeFormatterBuilder.DateTimePrinterParser;
-import java.time.format.DateTimeFormatterBuilder.StringLiteralPrinterParser;
-
-import org.jresearch.threetenbp.gwt.client.format.wrap.DateTimeParseContextTestWrapper;
-import org.jresearch.threetenbp.gwt.client.format.wrap.DateTimePrintContextTestWrapper;
+import org.jresearch.threetenbp.gwt.time.client.format.wrap.DateTimeParseContextTestWrapper;
+import org.jresearch.threetenbp.gwt.time.client.format.wrap.DateTimePrintContextTestWrapper;
 
 //JDK version, see for real code in /src/test/super
 public class StringLiteralPrinterParsers {

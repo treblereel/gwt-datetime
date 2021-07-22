@@ -50,7 +50,7 @@ The impementation contains all actual data from CLDR
 * Chronology prints as ID (take it from browser)
 * Implementation of `JapaneseChronology`/`JapaneseEra`/`JapaneseDate` in the original project based on `java.util.Calendar` and doesn't works right now.
 * new `JapaneseEra.REIWA` required Java 13 to build (current is Java 8)
-* java.util.Locale implementation may clash with original GWT implementation. See [dicussion on Google Groups](https://groups.google.com/forum/#!msg/Google-Web-Toolkit/D0I1-Oao_V8/k5FEBrxNBQAJ) and similar [issue](https://github.com/gwtproject/gwt/issues/9682) with gwt-commons-lang3 (the class will separate to another project)
+* java.time.locale.Locale implementation may clash with original GWT implementation. See [dicussion on Google Groups](https://groups.google.com/forum/#!msg/Google-Web-Toolkit/D0I1-Oao_V8/k5FEBrxNBQAJ) and similar [issue](https://github.com/gwtproject/gwt/issues/9682) with gwt-commons-lang3 (the class will separate to another project)
 * Convert to/from `java.util.Calendar`, to/from `java.util.TimeZone`, to/from `java.text.Format` is out of scope of this project
 
 

@@ -32,6 +32,8 @@
 package java.time;
 
 import java.io.Serializable;
+
+import elemental2.dom.DomGlobal;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.TextStyle;
 import java.time.temporal.TemporalAccessor;
@@ -42,6 +44,8 @@ import java.time.temporal.UnsupportedTemporalTypeException;
 import java.time.zone.ZoneRules;
 import java.time.zone.ZoneRulesException;
 import java.time.zone.ZoneRulesProvider;
+import org.jresearch.threetenbp.gwt.time.client.Support;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -50,8 +54,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 //import java.util.TimeZone;
-
-import org.jresearch.threetenbp.gwt.client.Support;
 
 /**
  * A time-zone ID, such as {@code Europe/Paris}.
@@ -231,9 +233,15 @@ public abstract class ZoneId implements Serializable {
 	 * @throws ZoneRulesException if the converted zone region ID cannot be found
 	 */
 	public static ZoneId systemDefault() {
-		//GWT specific
+		// GWT specific
 		String browserZone = Support.getTimezone();
-		return browserZone == null ? ZoneOffset.UTC : ZoneId.of(browserZone);
+		try {
+			return ZoneId.of(browserZone);
+		} catch (ZoneRulesException e) {
+			DomGlobal.console.warn("Can't resolve system default zone {" + browserZone + "}: {"+ e.getMessage() + "}. Fallback to zone offset");
+		}
+		int minutesOffset = Support.getMinutesOffset();
+		return ZoneOffset.ofTotalSeconds(minutesOffset * 60);
 	}
 
 	/**
@@ -398,8 +406,8 @@ public abstract class ZoneId implements Serializable {
 	 * @throws DateTimeException if unable to convert to a {@code ZoneId}
 	 */
 	public static ZoneId from(TemporalAccessor temporal) {
-    	//GWT specific
-    	Objects.requireNonNull(temporal);
+		// GWT specific
+		Objects.requireNonNull(temporal);
 		ZoneId obj = temporal.query(TemporalQueries.zone());
 		if (obj == null) {
 			throw new DateTimeException("Unable to obtain ZoneId from TemporalAccessor: " + temporal + ", type "

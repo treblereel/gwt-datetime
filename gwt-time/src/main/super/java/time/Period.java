@@ -413,8 +413,7 @@ public final class Period
      *
      * @return true if this period is zero-length
      */
-    @Override
-	public boolean isZero() {
+    public boolean isZero() {
         return (this == ZERO);
     }
 
@@ -425,8 +424,7 @@ public final class Period
      *
      * @return true if any unit of this period is negative
      */
-    @Override
-	public boolean isNegative() {
+    public boolean isNegative() {
         return years < 0 || months < 0 || days < 0;
     }
 
@@ -551,8 +549,7 @@ public final class Period
      * @return a {@code Period} based on this period with the requested period added, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
-    @Override
-	public Period plus(TemporalAmount amountToAdd) {
+    public Period plus(TemporalAmount amountToAdd) {
         Period amount = Period.from(amountToAdd);
         return create(
                 Math.addExact(years, amount.years),
@@ -636,8 +633,7 @@ public final class Period
      * @return a {@code Period} based on this period with the requested period subtracted, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
-    @Override
-	public Period minus(TemporalAmount amountToSubtract) {
+    public Period minus(TemporalAmount amountToSubtract) {
         Period amount = Period.from(amountToSubtract);
         return create(
                 Math.subtractExact(years, amount.years),
@@ -708,8 +704,7 @@ public final class Period
      * @return a {@code Period} based on this period with the amounts multiplied by the scalar, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
-    @Override
-	public Period multipliedBy(int scalar) {
+    public Period multipliedBy(int scalar) {
         if (this == ZERO || scalar == 1) {
             return this;
         }
@@ -725,8 +720,7 @@ public final class Period
      * @return a {@code Period} based on this period with the amounts negated, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
-    @Override
-	public Period negated() {
+    public Period negated() {
         return multipliedBy(-1);
     }
 
@@ -751,8 +745,7 @@ public final class Period
      * @return a {@code Period} based on this period with excess months normalized to years, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
-    @Override
-	public Period normalized() {
+    public Period normalized() {
         long totalMonths = toTotalMonths();
         long splitYears = totalMonths / 12;
         int splitMonths = (int) (totalMonths % 12);  // no overflow
