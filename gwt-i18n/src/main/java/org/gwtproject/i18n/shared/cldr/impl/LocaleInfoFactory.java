@@ -112,17 +112,17 @@ public class LocaleInfoFactory {
         var weekendStart = dateTimeFormatInfo.@com.google.gwt.i18n.shared.DateTimeFormatInfo::weekendStart()();
 
 
-        var newDateTimeFormatInfo = @org.treblereel.client.locale.BridgedDateTimeFormatInfo::new([Ljava/lang/String;
+        var newDateTimeFormatInfo = @org.gwtproject.i18n.shared.cldr.impl.gwt2.BridgedDateTimeFormatInfo::new([Ljava/lang/String;
                                                                                                   Ljava/lang/String;
                                                                                                   Ljava/lang/String;
                                                                                                   Ljava/lang/String;
                                                                                                   Ljava/lang/String;
                                                                                                   Ljava/lang/String;
-                                                                                                  Lorg/treblereel/client/locale/Functions$Callback;
-                                                                                                  Lorg/treblereel/client/locale/Functions$Callback;
-                                                                                                  Lorg/treblereel/client/locale/Functions$Callback;
-                                                                                                  Lorg/treblereel/client/locale/Functions$Callback;
-                                                                                                  Lorg/treblereel/client/locale/Functions$Callback;
+                                                                                                  Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/Functions$Callback;
+                                                                                                  Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/Functions$Callback;
+                                                                                                  Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/Functions$Callback;
+                                                                                                  Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/Functions$Callback;
+                                                                                                  Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/Functions$Callback;
                                                                                                   [Ljava/lang/String;
                                                                                                   [Ljava/lang/String;
                                                                                                   I
@@ -251,9 +251,9 @@ public class LocaleInfoFactory {
             return localizedNames.@org.gwtproject.i18n.shared.cldr.LocalizedNames::getSortedRegionCodes()();
         }
 
-        var bridgedLocalizedNamesImplBase = @org.treblereel.client.locale.BridgedLocalizedNamesImplBase::new(Lorg/treblereel/client/locale/Functions$CallbackRtrnStringArray;
-                                                                                                           Lorg/treblereel/client/locale/Functions$CallbackRtrnString;
-                                                                                                           Lorg/treblereel/client/locale/Functions$CallbackRtrnStringArray;)
+        var bridgedLocalizedNamesImplBase = @org.gwtproject.i18n.shared.cldr.impl.gwt2.BridgedLocalizedNamesImplBase::new(Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/Functions$CallbackRtrnStringArray;
+                                                                                                           Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/Functions$CallbackRtrnString;
+                                                                                                           Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/Functions$CallbackRtrnStringArray;)
                                                                                                            (getLikelyRegionCodes, getRegionName, getSortedRegionCodes);
 
         var numberConstants = getCurrentLocale.@com.google.gwt.i18n.client.LocaleInfo::getNumberConstants()();
@@ -277,7 +277,7 @@ public class LocaleInfoFactory {
         var simpleCurrencyPattern = numberConstants.@com.google.gwt.i18n.client.constants.NumberConstants::simpleCurrencyPattern()();
         var zeroDigit = numberConstants.@com.google.gwt.i18n.client.constants.NumberConstants::zeroDigit()();
 
-        var bridgedNumberConstants = new @org.treblereel.client.locale.BridgedNumberConstants::new(Ljava/lang/String;
+        var bridgedNumberConstants = new @org.gwtproject.i18n.shared.cldr.impl.gwt2.BridgedNumberConstants::new(Ljava/lang/String;
                                                                                                    Ljava/lang/String;
                                                                                                    Ljava/lang/String;
                                                                                                    Ljava/lang/String;
@@ -316,11 +316,11 @@ public class LocaleInfoFactory {
                                                                                                    zeroDigit);
 
 
-        var impl = new @org.treblereel.client.locale.BridgedLocaleInfoImpl::new(Ljava/lang/String;
+        var impl = new @org.gwtproject.i18n.shared.cldr.impl.gwt2.BridgedLocaleInfoImpl::new(Ljava/lang/String;
                                                                               Ljava/lang/Boolean;
-                                                                              Lorg/treblereel/client/locale/BridgedDateTimeFormatInfo;
-                                                                              Lorg/treblereel/client/locale/BridgedLocalizedNamesImplBase;
-                                                                              Lorg/treblereel/client/locale/BridgedNumberConstants;
+                                                                              Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/BridgedDateTimeFormatInfo;
+                                                                              Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/BridgedLocalizedNamesImplBase;
+                                                                              Lorg/gwtproject/i18n/shared/cldr/impl/gwt2/BridgedNumberConstants;
                                                                               )
                                                                               (name, isRTL, newDateTimeFormatInfo, bridgedLocalizedNamesImplBase, bridgedNumberConstants);
 
@@ -328,14 +328,6 @@ public class LocaleInfoFactory {
 
     return impl;
   }-*/;
-
-/*    public static org.gwtproject.i18n.shared.cldr.LocaleInfoImpl get2(String locale) {
-        if(holder.has(locale)) {
-            return holder.get(locale);
-        }
-        return new LocaleInfoImpl();
-
-    }*/
 
     private static class LocaleHolder {
         private static final String locale = System.getProperty("gwt.locale");
