@@ -24,7 +24,7 @@ public class LocaleInfoFactory {
     public static final JsMap<String, org.gwtproject.i18n.shared.cldr.LocaleInfoImpl> holder = new JsMap<String, org.gwtproject.i18n.shared.cldr.LocaleInfoImpl>();
 
     public static org.gwtproject.i18n.shared.cldr.LocaleInfoImpl create() {
-        return get(LocaleHolder.locale);
+        return get(getLocale());
     }
 
     @JsMethod
@@ -329,7 +329,8 @@ public class LocaleInfoFactory {
     return impl;
   }-*/;
 
-    private static class LocaleHolder {
-        private static final String locale = System.getProperty("gwt.locale");
+    private static String getLocale() {
+        return "default";
     }
+
 }
