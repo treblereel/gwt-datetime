@@ -103,9 +103,6 @@ public class ApplicationProcessor extends AbstractProcessor {
                 }
             }
         }
-
-        locales.forEach(l -> System.out.println("L -> " + l));
-
         return locales;
     }
 

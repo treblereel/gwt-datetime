@@ -4,6 +4,7 @@
 	<inherits name="org.gwtproject.nio.GwtNioSupport" />
 	<inherits name="org.gwtproject.resources.Resources" />
 	<inherits name="org.jresearch.gwt.time.TimeBase" />
+	<inherits name="org.gwtproject.i18n.I18N" />
 
 	<source path="client" />
 	<super-source path="super" />

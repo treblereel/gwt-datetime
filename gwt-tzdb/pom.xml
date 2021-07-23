@@ -19,10 +19,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.gwtproject.resources</groupId>
@@ -30,15 +29,6 @@
 							<version>HEAD-SNAPSHOT</version>
 						</path>
 					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<!-- To correct work of GWT Super source -->
-				<configuration>
-					<ignoredUnusedDeclaredDependencies>
-						<ignoredUnusedDeclaredDependency>org.dominokit:domino-slf4j-logger</ignoredUnusedDeclaredDependency>
-					</ignoredUnusedDeclaredDependencies>
 				</configuration>
 			</plugin>
 			<plugin>
