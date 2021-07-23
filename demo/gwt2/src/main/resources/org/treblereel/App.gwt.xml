@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='App'>
+  <inherits name='com.google.gwt.user.User' />
+
+  <inherits name='com.google.gwt.user.theme.standard.Standard' />
+  <inherits name='org.jresearch.threetenbp.gwt.time.Time' />
+  <inherits name='org.gwtproject.i18n.DateTimeFormat' />
+  <inherits name='org.gwtproject.i18n.NumberFormat' />
+
+  <entry-point class='org.treblereel.client.App' />
+
+  <source path='client' />
+  <source path='shared' />
+
+
+  <extend-property name="locale" values="en,es,de,fr,ru" /> <!-- 1. full list of supported locales -->
+  <set-property name="locale" value="en,es,de,fr,ru" />     <!-- 2. remove the 'default' locale permutation -->
+  <set-property-fallback name="locale" value="ru" />
+
+</module>
