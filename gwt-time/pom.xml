@@ -191,10 +191,6 @@
             <artifactId>gwt-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.gwtproject.resources</groupId>
-            <artifactId>gwt-resources-api</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
             <scope>provided</scope>

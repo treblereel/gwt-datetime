@@ -271,6 +271,7 @@ public class LocaleInfoFactory {
         var monetaryGroupingSeparator = numberConstants.@com.google.gwt.i18n.client.constants.NumberConstants::monetaryGroupingSeparator()();
         var monetarySeparator = numberConstants.@com.google.gwt.i18n.client.constants.NumberConstants::monetarySeparator()();
         var percent = numberConstants.@com.google.gwt.i18n.client.constants.NumberConstants::percent()();
+        var percentPattern = numberConstants.@com.google.gwt.i18n.client.constants.NumberConstants::percentPattern()();
         var perMill = numberConstants.@com.google.gwt.i18n.client.constants.NumberConstants::perMill()();
         var plusSign = numberConstants.@com.google.gwt.i18n.client.constants.NumberConstants::plusSign()();
         var scientificPattern = numberConstants.@com.google.gwt.i18n.client.constants.NumberConstants::scientificPattern()();
@@ -308,6 +309,7 @@ public class LocaleInfoFactory {
                                                                                                    minusSign,
                                                                                                    monetaryGroupingSeparator,
                                                                                                    monetarySeparator,
+                                                                                                   percent,
                                                                                                    percent,
                                                                                                    perMill,
                                                                                                    plusSign,
